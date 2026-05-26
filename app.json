@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Hydra",
+    "slug": "hydra",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "scheme": "hydra",
+    "splash": {
+      "backgroundColor": "#dff8ff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundColor": "#ffffff",
+        "backgroundColor": "#0b5fff"
+      }
+    },
+    "plugins": ["expo-notifications"]
+  }
+}
