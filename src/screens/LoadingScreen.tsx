@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
-import { GradientBackground } from '@/components/GradientBackground';
+import { GradientBackground } from '../components/GradientBackground';
 
 export function LoadingScreen() {
   return (

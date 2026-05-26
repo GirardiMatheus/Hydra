@@ -1,10 +1,12 @@
 import * as Notifications from 'expo-notifications';
 
-import { getRandomReminderMessage } from '@/utils/messages';
+import { getRandomReminderMessage } from '../utils/messages';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
+    shouldShowBanner: true,
+    shouldShowList: false,
     shouldPlaySound: false,
     shouldSetBadge: false,
   }),
@@ -15,7 +17,7 @@ export async function requestNotificationPermissions(): Promise<boolean> {
 
   if (
     current.granted ||
-    current.status === Notifications.IosAuthorizationStatus.PROVISIONAL
+    current.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL
   ) {
     return true;
   }
@@ -43,6 +45,7 @@ export async function scheduleDailyHydrationReminders(
         sound: false,
       },
       trigger: {
+        type: Notifications.SchedulableTriggerInputTypes.CALENDAR,
         hour,
         minute,
         repeats: true,

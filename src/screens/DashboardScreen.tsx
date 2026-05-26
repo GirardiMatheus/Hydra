@@ -1,19 +1,18 @@
 import React, { useMemo } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { StackScreenProps } from '@react-navigation/native-stack';
-import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { ActionButton } from '@/components/ActionButton';
-import { Bottle } from '@/components/Bottle';
-import { GradientBackground } from '@/components/GradientBackground';
-import { ProgressBar } from '@/components/ProgressBar';
-import { ScreenCard } from '@/components/ScreenCard';
-import { useHydration } from '@/hooks/useHydration';
-import { AppStackParamList } from '@/types/navigation';
-import { getDayPeriodGreeting } from '@/utils/date';
-import { getRandomMotivationalMessage } from '@/utils/messages';
+import { ActionButton } from '../components/ActionButton';
+import { Bottle } from '../components/Bottle';
+import { GradientBackground } from '../components/GradientBackground';
+import { ProgressBar } from '../components/ProgressBar';
+import { ScreenCard } from '../components/ScreenCard';
+import { useHydration } from '../hooks/useHydration';
+import { AppStackParamList } from '../types/navigation';
+import { getDayPeriodGreeting } from '../utils/date';
+import { getRandomMotivationalMessage } from '../utils/messages';
 
-type Props = StackScreenProps<AppStackParamList, 'Dashboard'>;
+type Props = NativeStackScreenProps<AppStackParamList, 'Dashboard'>;
 
 export function DashboardScreen({ navigation }: Props) {
   const {
@@ -56,7 +55,7 @@ export function DashboardScreen({ navigation }: Props) {
                 </Text>
               </View>
               <View style={styles.streakBadge}>
-                <MaterialCommunityIcons name='fire' size={18} color='#ff7b2f' />
+                <View style={styles.streakBadgeDot} />
                 <Text style={styles.streakText}>{streak} dias</Text>
               </View>
             </View>
@@ -128,7 +127,7 @@ export function DashboardScreen({ navigation }: Props) {
           <ScreenCard style={styles.historyItem}>
             <View style={styles.historyRow}>
               <View style={styles.historyIcon}>
-                <AntDesign name='clockcircle' size={16} color='#0b5fff' />
+                <Text style={styles.historyIconText}>H</Text>
               </View>
               <View style={styles.historyTextGroup}>
                 <Text style={styles.historyTitle}>{item.date}</Text>
@@ -187,6 +186,12 @@ const styles = StyleSheet.create({
   streakText: {
     color: '#d75f0d',
     fontWeight: '800',
+  },
+  streakBadgeDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 999,
+    backgroundColor: '#ff7b2f',
   },
   highlightCard: {
     gap: 0,
@@ -275,6 +280,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(11,95,255,0.10)',
+  },
+  historyIconText: {
+    color: '#0b5fff',
+    fontWeight: '900',
+    fontSize: 14,
   },
   historyTextGroup: {
     flex: 1,

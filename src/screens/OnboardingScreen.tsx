@@ -7,22 +7,22 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { StackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { ActionButton } from '@/components/ActionButton';
-import { GradientBackground } from '@/components/GradientBackground';
-import { ScreenCard } from '@/components/ScreenCard';
-import { AppStackParamList } from '@/types/navigation';
+import { ActionButton } from '../components/ActionButton';
+import { GradientBackground } from '../components/GradientBackground';
+import { ScreenCard } from '../components/ScreenCard';
+import { AppStackParamList } from '../types/navigation';
 import {
   ActivityLevel,
   DoseOption,
   Gender,
   UserProfile,
-} from '@/types/hydration';
-import { buildHydrationPlan, getActivityLabel } from '@/utils/hydration';
-import { useHydration } from '@/hooks/useHydration';
+} from '../types/hydration';
+import { buildHydrationPlan, getActivityLabel } from '../utils/hydration';
+import { useHydration } from '../hooks/useHydration';
 
-type Props = StackScreenProps<AppStackParamList, 'Onboarding'>;
+type Props = NativeStackScreenProps<AppStackParamList, 'Onboarding'>;
 
 const ACTIVITY_OPTIONS: ActivityLevel[] = [
   'sedentario',

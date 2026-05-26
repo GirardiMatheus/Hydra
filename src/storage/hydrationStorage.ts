@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { HydrationState } from '@/types/hydration';
+import { HydrationState } from '../types/hydration';
 
 const STORAGE_KEY = '@hydra/app-state';
 

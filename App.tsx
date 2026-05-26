@@ -5,13 +5,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { HydrationProvider, useHydration } from '@/hooks/useHydration';
-import { AppStackParamList } from '@/types/navigation';
-import { OnboardingScreen } from '@/screens/OnboardingScreen';
-import { DoseScreen } from '@/screens/DoseScreen';
-import { DashboardScreen } from '@/screens/DashboardScreen';
-import { HistoryScreen } from '@/screens/HistoryScreen';
-import { LoadingScreen } from '@/screens/LoadingScreen';
+import { HydrationProvider, useHydration } from './src/hooks/useHydration';
+import { AppStackParamList } from './src/types/navigation';
+import { OnboardingScreen } from './src/screens/OnboardingScreen';
+import { DoseScreen } from './src/screens/DoseScreen';
+import { DashboardScreen } from './src/screens/DashboardScreen';
+import { HistoryScreen } from './src/screens/HistoryScreen';
+import { LoadingScreen } from './src/screens/LoadingScreen';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 

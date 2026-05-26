@@ -1,14 +1,14 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { StackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { ActionButton } from '@/components/ActionButton';
-import { GradientBackground } from '@/components/GradientBackground';
-import { ScreenCard } from '@/components/ScreenCard';
-import { useHydration } from '@/hooks/useHydration';
-import { AppStackParamList } from '@/types/navigation';
+import { ActionButton } from '../components/ActionButton';
+import { GradientBackground } from '../components/GradientBackground';
+import { ScreenCard } from '../components/ScreenCard';
+import { useHydration } from '../hooks/useHydration';
+import { AppStackParamList } from '../types/navigation';
 
-type Props = StackScreenProps<AppStackParamList, 'History'>;
+type Props = NativeStackScreenProps<AppStackParamList, 'History'>;
 
 export function HistoryScreen({ navigation }: Props) {
   const { history, streak } = useHydration();

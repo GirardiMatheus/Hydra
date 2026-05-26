@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { StackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { ActionButton } from '@/components/ActionButton';
-import { GradientBackground } from '@/components/GradientBackground';
-import { ScreenCard } from '@/components/ScreenCard';
-import { useHydration } from '@/hooks/useHydration';
-import { AppStackParamList } from '@/types/navigation';
-import { DoseOption } from '@/types/hydration';
+import { ActionButton } from '../components/ActionButton';
+import { GradientBackground } from '../components/GradientBackground';
+import { ScreenCard } from '../components/ScreenCard';
+import { useHydration } from '../hooks/useHydration';
+import { AppStackParamList } from '../types/navigation';
+import { DoseOption } from '../types/hydration';
 
-type Props = StackScreenProps<AppStackParamList, 'Dose'>;
+type Props = NativeStackScreenProps<AppStackParamList, 'Dose'>;
 
 const OPTIONS: DoseOption[] = [200, 250, 300, 500];
 

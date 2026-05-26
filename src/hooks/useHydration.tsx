@@ -7,24 +7,24 @@ import React, {
 } from 'react';
 import * as Haptics from 'expo-haptics';
 
-import { buildHydrationPlan } from '@/utils/hydration';
-import { getTodayKey } from '@/utils/date';
+import { buildHydrationPlan } from '../utils/hydration';
+import { getTodayKey } from '../utils/date';
 import {
   requestNotificationPermissions,
   scheduleDailyHydrationReminders,
-} from '@/services/notifications';
-import { playWaterDropSound } from '@/services/sounds';
+} from '../services/notifications';
+import { playWaterDropSound } from '../services/sounds';
 import {
   loadHydrationState,
   saveHydrationState,
-} from '@/storage/hydrationStorage';
+} from '../storage/hydrationStorage';
 import {
   ActivityLevel,
   DoseOption,
   HydrationState,
   UserProfile,
-} from '@/types/hydration';
-import { getRandomCompletionMessage } from '@/utils/messages';
+} from '../types/hydration';
+import { getRandomCompletionMessage } from '../utils/messages';
 
 interface HydrationContextValue extends HydrationState {
   isReady: boolean;

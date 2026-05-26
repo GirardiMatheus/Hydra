@@ -3,7 +3,7 @@ import {
   DoseOption,
   HydrationPlan,
   UserProfile,
-} from '@/types/hydration';
+} from '../types/hydration';
 
 const ACTIVITY_BONUS: Record<ActivityLevel, number> = {
   sedentario: 0,

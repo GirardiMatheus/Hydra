@@ -41,6 +41,13 @@ npm run start
 
 3. Abra no dispositivo físico ou emulador com o Expo Go.
 
+## Ambiente
+
+O projeto usa `.env` para configurações públicas do Expo e mantém `.env.example` como modelo.
+
+1. Se precisar recriar o arquivo local, copie `.env.example` para `.env`.
+2. Não coloque segredos reais no app cliente; use isso só para valores públicos de configuração.
+
 ## Notificações
 
 O app agenda notificações locais com `expo-notifications` e usa horários automáticos entre `08:00` e `22:00`.

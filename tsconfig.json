@@ -5,27 +5,13 @@
     "strict": true,
     "jsx": "react-jsx",
     "moduleResolution": "Bundler",
-    "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": [
-    "App.tsx",
-    "src",
-    "global.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "babel.config.js"
-  ],
+  "include": ["App.tsx", "src", "global.d.ts"],
+  "exclude": ["node_modules", "babel.config.js"],
   "extends": "expo/tsconfig.base"
 }
