@@ -2,54 +2,70 @@ import * as Notifications from 'expo-notifications';
 
 import { getRandomReminderMessage } from '../utils/messages';
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldShowBanner: true,
-    shouldShowList: false,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
+try {
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldShowBanner: true,
+      shouldShowList: false,
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+    }),
+  });
+} catch {
+  // Expo Go can expose partial notifications support; keep the app booting.
+}
 
 export async function requestNotificationPermissions(): Promise<boolean> {
-  const current = await Notifications.getPermissionsAsync();
+  try {
+    const current = await Notifications.getPermissionsAsync();
 
-  if (
-    current.granted ||
-    current.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL
-  ) {
-    return true;
+    if (
+      current.granted ||
+      current.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL
+    ) {
+      return true;
+    }
+
+    const result = await Notifications.requestPermissionsAsync();
+    return result.granted;
+  } catch {
+    return false;
   }
-
-  const result = await Notifications.requestPermissionsAsync();
-  return result.granted;
 }
 
 export async function cancelScheduledNotifications(): Promise<void> {
-  await Notifications.cancelAllScheduledNotificationsAsync();
+  try {
+    await Notifications.cancelAllScheduledNotificationsAsync();
+  } catch {
+    return;
+  }
 }
 
 export async function scheduleDailyHydrationReminders(
   times: string[],
 ): Promise<void> {
-  await cancelScheduledNotifications();
+  try {
+    await cancelScheduledNotifications();
 
-  for (const time of times) {
-    const [hour, minute] = time.split(':').map(Number);
+    for (const time of times) {
+      const [hour, minute] = time.split(':').map(Number);
 
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: 'Hora de beber água',
-        body: getRandomReminderMessage(),
-        sound: false,
-      },
-      trigger: {
-        type: Notifications.SchedulableTriggerInputTypes.CALENDAR,
-        hour,
-        minute,
-        repeats: true,
-      },
-    });
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: 'Hora de beber água',
+          body: getRandomReminderMessage(),
+          sound: false,
+        },
+        trigger: {
+          type: Notifications.SchedulableTriggerInputTypes.CALENDAR,
+          hour,
+          minute,
+          repeats: true,
+        },
+      });
+    }
+  } catch {
+    return;
   }
 }

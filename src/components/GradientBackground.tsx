@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 
 export function GradientBackground({
   children,
@@ -9,10 +8,7 @@ export function GradientBackground({
 }) {
   return (
     <View style={styles.root}>
-      <LinearGradient
-        colors={['#effbff', '#d6f2ff', '#ffffff']}
-        style={StyleSheet.absoluteFillObject}
-      />
+      <View style={[StyleSheet.absoluteFillObject, styles.background]} />
       <View style={styles.haloOne} />
       <View style={styles.haloTwo} />
       {children}
@@ -23,6 +19,9 @@ export function GradientBackground({
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+  },
+  background: {
+    backgroundColor: '#effbff',
   },
   haloOne: {
     position: 'absolute',

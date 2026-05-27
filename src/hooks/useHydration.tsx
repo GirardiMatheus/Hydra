@@ -231,7 +231,13 @@ export function HydrationProvider({ children }: { children: React.ReactNode }) {
       const nextStreak = completedYesterday ? state.streak + 1 : 1;
       const completionText = getRandomCompletionMessage();
       setCompletionMessage(completionText);
-      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      try {
+        await Haptics.notificationAsync(
+          Haptics.NotificationFeedbackType.Success,
+        );
+      } catch {
+        // Ignore haptic failures on runtimes that do not support them.
+      }
 
       await persist({
         ...state,
@@ -246,7 +252,11 @@ export function HydrationProvider({ children }: { children: React.ReactNode }) {
     }
 
     setCompletionMessage('');
-    await Haptics.selectionAsync();
+    try {
+      await Haptics.selectionAsync();
+    } catch {
+      // Ignore haptic failures on runtimes that do not support them.
+    }
     await playWaterDropSound();
     await persist({
       ...state,

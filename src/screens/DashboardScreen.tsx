@@ -102,11 +102,16 @@ export function DashboardScreen({ navigation }: Props) {
             </ScreenCard>
 
             <View style={styles.actionsRow}>
-              <ActionButton label='Bebi água' onPress={registerWaterIntake} />
+              <ActionButton
+                label='Bebi água'
+                onPress={registerWaterIntake}
+                style={styles.actionButton}
+              />
               <ActionButton
                 label='Ajustar dose'
                 onPress={() => navigation.navigate('Dose')}
                 variant='secondary'
+                style={styles.actionButton}
               />
             </View>
 
@@ -256,6 +261,10 @@ const styles = StyleSheet.create({
   actionsRow: {
     flexDirection: 'row',
     gap: 12,
+    width: '100%',
+  },
+  actionButton: {
+    flex: 1,
   },
   historyHeader: {
     flexDirection: 'row',

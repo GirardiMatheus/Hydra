@@ -1,53 +1,46 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Animated, {
-  Easing,
-  interpolateColor,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-} from 'react-native-reanimated';
 
 interface BottleProps {
   progressPercent: number;
 }
 
-const AnimatedView = Animated.createAnimatedComponent(View);
+function getWaterColor(progressPercent: number): string {
+  if (progressPercent >= 100) {
+    return '#00d6a3';
+  }
+
+  if (progressPercent >= 75) {
+    return '#12b886';
+  }
+
+  if (progressPercent >= 45) {
+    return '#55c7ff';
+  }
+
+  return '#bfe8ff';
+}
 
 export function Bottle({ progressPercent }: BottleProps) {
-  const pulse = useSharedValue(0);
-
-  useEffect(() => {
-    pulse.value = withRepeat(
-      withTiming(1, { duration: 1800, easing: Easing.inOut(Easing.quad) }),
-      -1,
-      true,
-    );
-  }, [pulse]);
-
-  const bottleStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: 1 + pulse.value * 0.015 }],
-  }));
-
-  const waterStyle = useAnimatedStyle(() => ({
-    height: `${Math.max(0, Math.min(100, progressPercent))}%`,
-    backgroundColor: interpolateColor(
-      progressPercent / 100,
-      [0, 0.45, 0.75, 1],
-      ['#bfe8ff', '#55c7ff', '#12b886', '#00d6a3'],
-    ),
-  }));
+  const normalizedProgress = Math.max(0, Math.min(100, progressPercent));
 
   return (
-    <AnimatedView style={[styles.wrapper, bottleStyle]}>
+    <View style={styles.wrapper}>
       <View style={styles.neck} />
       <View style={styles.body}>
-        <Animated.View style={[styles.water, waterStyle]} />
+        <View
+          style={[
+            styles.water,
+            {
+              height: `${normalizedProgress}%`,
+              backgroundColor: getWaterColor(normalizedProgress),
+            },
+          ]}
+        />
         <View style={styles.surface} />
       </View>
-      <Text style={styles.label}>{Math.round(progressPercent)}%</Text>
-    </AnimatedView>
+      <Text style={styles.label}>{Math.round(normalizedProgress)}%</Text>
+    </View>
   );
 }
 

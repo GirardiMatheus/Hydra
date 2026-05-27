@@ -1,16 +1,18 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, ViewStyle } from 'react-native';
 
 interface ActionButtonProps {
   label: string;
   onPress: () => void;
   variant?: 'primary' | 'secondary';
+  style?: ViewStyle;
 }
 
 export function ActionButton({
   label,
   onPress,
   variant = 'primary',
+  style,
 }: ActionButtonProps) {
   return (
     <Pressable
@@ -18,6 +20,7 @@ export function ActionButton({
       style={({ pressed }) => [
         styles.button,
         styles[variant],
+        style,
         pressed && styles.pressed,
       ]}
     >
